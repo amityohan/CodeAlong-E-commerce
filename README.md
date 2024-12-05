@@ -49,3 +49,17 @@ The project is built using html, css, and reactjs
     1. Add a components folder inside the src folder.
     2. Add two folders named Authorization and Navbar inside the  components folder.
     3. Inside the the Authorization folderadd a Login.js and a Signup.js file for creating the login page.
+
+
+## Milestone 3- Configuring and connecting the backend server to MongoDB
+
+1. Created a mongo DB account and created a new database.
+2. Created a new collection in the database.
+3. To connect it to backend, put the URL, PORT and pwd in the env file.
+4. Created a new file called database.js in the backend folder to connect to the database that is in the mongoDb.
+5. Created a new file called App.js which sends the response to the client.
+6. Created a utilities folder.
+7. Added new file called errorhandling, which will handle any error that occures.
+
+
+
