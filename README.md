@@ -62,4 +62,8 @@ The project is built using html, css, and reactjs
 7. Added new file called errorhandling, which will handle any error that occures.
 
 
+## Milestone 4- Creating a user model, user controller and setting up mutler for file uploads
 
+1. Created user.model.js in models, where the schema of the API is present, for how the data is supposed to be.
+2. In user.controller.js we created an async function which checks if the user exists or not, via their email id(unique). If they don't exist, we create a new user in the model.js
+3. We set up the multer which uploads the active/new users that in a new folder automatically, in the backend.
