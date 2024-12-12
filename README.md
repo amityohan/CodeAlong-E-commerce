@@ -67,3 +67,11 @@ The project is built using html, css, and reactjs
 1. Created user.model.js in models, where the schema of the API is present, for how the data is supposed to be.
 2. In user.controller.js we created an async function which checks if the user exists or not, via their email id(unique). If they don't exist, we create a new user in the model.js
 3. We set up the multer which uploads the active/new users that in a new folder automatically, in the backend.
+
+
+## Milestone 5-Creating signup & login UI with validation & Routes
+
+1. First of all we created the UI for the Login and the Sign up page.
+2. Created the validation for the name, email and password entered by the user, and connected it to the login and sign-up page.
+3. In the App.jsx file we created routes for the login and sign-up page, so that we can traverse through them.
+4. Milestone completed
