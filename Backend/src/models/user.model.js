@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 
-const userSchema=new mongoose.Schema({
+const userSchema=new mongoose.Schema(
+  {
     Name:{type:String, require: [true, 'Please enter the Name...']},
     email:{type:String,
           require:[true, 'Please enter Email...'],
