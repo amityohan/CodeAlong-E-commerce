@@ -1,10 +1,18 @@
 const express=require('express');
-const { CreateUser}=require('../controllers/user.controller.js');
-const upload=require('.../multer');
+const upload=require('../Middlewares/multer.js');
 
+const {
+    CreateUser,
+    verifyUserController,
+}=require('../controllers/user.controller.js')
+
+// const jwt =require('jsonwebtoken')
 const router=express.Router();
 
-router.get('/create-user', upload.single('file'),CreateUser);
+router.post('/create-user', upload.single('file'),CreateUser);
 
-module.exports=router
+router.get('/activation/:token',)
+
+
+module.exports=router;
 

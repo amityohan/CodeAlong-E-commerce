@@ -67,3 +67,25 @@ The project is built using html, css, and reactjs
 1. Created user.model.js in models, where the schema of the API is present, for how the data is supposed to be.
 2. In user.controller.js we created an async function which checks if the user exists or not, via their email id(unique). If they don't exist, we create a new user in the model.js
 3. We set up the multer which uploads the active/new users that in a new folder automatically, in the backend.
+
+
+## Milestone 5-Creating signup & login UI with validation & Routes
+
+1. First of all we created the UI for the Login and the Sign up page.
+2. Created the validation for the name, email and password entered by the user, and connected it to the login and sign-up page.
+3. In the App.jsx file we created routes for the login and sign-up page, so that we can traverse through them.
+4. Milestone completed
+
+## Milestone 6- nodeMailer, JWT token, endpoint.
+
+1. We have installed the nodemailer to the project which would help us to send verification mails.
+
+2. After the validation is done, if the user doesn't exist already, we create a new user in a new endpoint (/activation/:token).  (func: CreateUser.)
+
+3. We created sendMail.js which is used to send the mail from our account to the user's account.
+
+4. To make sure that the verification mail is sent to mail, we have use transporter.sendMail().
+
+5. We generated JWT (Jason web Tokens), which is basically the encrypted data, that is being sent by postman (testing).
+
+6. We updated the multer file, which is going to help us to upload files when a new user is created.
