@@ -2,6 +2,8 @@ const UserModel=require('../models/user.model.js')
 const ErrorHandler=require('../utilities/errorhandler.js')
 const transporter=require('../utilities/sendMail.js')
 const jwt=require('jsonwebtoken')
+const bycrypt = require('bcrypt')
+
 
 require('dotenv').config({
     path:'../Config/.env'
@@ -88,9 +90,74 @@ async function verifyUserController(req,res){
     }catch (er){
         return res.status(403).send({message: er.message});
     }
+
+}
+
+const signup=async (req,res)=>{
+    const {name,email,password}=req.body;
+    try{
+        const CheckUserPresentDB=await UserModel.findOne({email:email});
+        if(CheckUserPresentDB){
+            return res.status(403).send({message:"User Already Present"})
+        }
+        bycrypt.hash(password,10,async function (err,hashed){
+            try{
+                if(err){
+                    return res.status(403).send({message:err.message})
+                }
+                await UserModel.create({
+                    Name:name,
+                    email,
+                    password:hashed
+                })
+
+                return res.status(201).send({message:"User Created Successfully"})
+            }
+            catch(er){
+                return res.status(500).send({message:er.message})
+            }
+
+        })
+
+        
+    }
+
+    catch (err){
+        return res.status(500).send({message:err.message})
+    }
+}
+
+
+const login =async(req, res)=>{
+    const {email, password} = req.body;
+    
+    try{
+
+        const CheckUserPresentDB=await UserModel.findOne({email:email})
+        bycrypt.compare(password,CheckUserPresentDB.password, function(err, result){
+            if(err){
+                return res.status(403).send({message:err.message,success:false})
+            }
+
+            let data={
+                id:CheckUserPresentDB._id,
+                email,
+                password:CheckUserPresentDB.password
+            }
+
+            const token=generateToken(data)
+            return res.status(200).cookie('token',token).send({message:"User logged in Successfully", 
+                success:true
+            })
+
+
+        })
+
+    }catch(err){
+        return res.status(403).send({message:err.message,success:false})
+    }
 }
 
 
 
-
-module.exports={CreateUser, verifyUserController};
+module.exports={CreateUser, verifyUserController,login,signup};

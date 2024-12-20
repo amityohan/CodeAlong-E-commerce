@@ -89,3 +89,17 @@ The project is built using html, css, and reactjs
 5. We generated JWT (Jason web Tokens), which is basically the encrypted data, that is being sent by postman (testing).
 
 6. We updated the multer file, which is going to help us to upload files when a new user is created.
+
+
+## Milestone 7:
+1. Signup:
+    1. Check for Existing User:
+        - If the user is already in the database, return a message prompting for direct login.
+    2. User Creation:
+        - If not present, hash the password using bcrypt.js.
+        - Create a new user and store the name, email, and password in the database.
+2. Login:
+    1. Validation:
+        - Check if the user exists in the database and validate the password.
+        - If valid, create a token and send it as cookies.
+        - If invalid, return a message prompting the user to sign up first.
