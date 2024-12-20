@@ -103,3 +103,15 @@ The project is built using html, css, and reactjs
         - Check if the user exists in the database and validate the password.
         - If valid, create a token and send it as cookies.
         - If invalid, return a message prompting the user to sign up first.
+
+## Milestone 8: Creating Card Component(frontend)
+
+    1. Create a new component called Card.js.
+    2. Inside Card.js, create a function called Card which will render the card.
+    3. The card component is going to be a reusable one so that we can use the same template for differenet cards.
+    4. The props for product details:
+        - Name 
+        - Image
+        - Price
+    5. Inside the Homepage Component, we will be using the flexbox layout.
+    6. Arranging them as we please.

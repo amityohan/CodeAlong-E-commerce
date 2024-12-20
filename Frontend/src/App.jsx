@@ -1,6 +1,10 @@
-import LoginPage from "./components/authorization/login";
-import Signup from "./Components/Authorization/SignUp";
+// import LoginPage from "./components/authorization/login";
+// import Signup from "./Components/Authorization/SignUp";
 import {Routes,Route,} from 'react-router-dom'; 
+import HomePage from './Pages/HomePage';
+import SignUp from './Pages/SignUp';
+import Login from './Pages/Login';
+
 
 function App(){
   return(
@@ -9,9 +13,9 @@ function App(){
       {/* <Signup/> */}
 
       <Routes>
-        <Route path="/" element={<>HOME PAGE</>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/signup" element={<SignUp/>} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
     </>
   )
