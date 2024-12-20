@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ValidationFormObject from '../../validation';
 import { Link } from 'react-router-dom';
-function Signup() {
+function SignupForm() {
 
 
   const [data, setdata] = useState({
@@ -119,4 +119,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignupForm;
