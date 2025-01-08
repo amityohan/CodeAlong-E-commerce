@@ -115,3 +115,12 @@ The project is built using html, css, and reactjs
         - Price
     5. Inside the Homepage Component, we will be using the flexbox layout.
     6. Arranging them as we please.
+
+## Milestone 9:
+  1. Design and implement the product form.
+
+  2. Enable functionality to accept multiple product images.
+
+  3. Save the form data to the database.
+
+  4. Display the saved product details on the product home page.
