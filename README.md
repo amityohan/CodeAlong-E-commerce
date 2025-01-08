@@ -124,3 +124,11 @@ The project is built using html, css, and reactjs
   3. Save the form data to the database.
 
   4. Display the saved product details on the product home page.
+
+  ## Milestone 10:
+1. Product Schema:
+    1. Define the structure of product data (e.g., name, description, price, image URL) using Mongoose.
+    2. Ensure each field has proper validation (e.g., required fields, correct data types).
+2. Endpoint Creation:
+    1. Build a POST endpoint to receive product data.
+    2. Validate and save the product details to MongoDB.
