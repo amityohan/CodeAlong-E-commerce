@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !=='PRODUCTION'){
 }
 const express=require('express');
 const UserRouter=require('./Routes/user.route.js')
-
+const productRouter=require('./Routes/product.route.js')
 
 const app=express();
 
@@ -17,5 +17,6 @@ app.get('/',(req,res)=>{
 
 app.use('/user',UserRouter)
 
+app.use('/product', productRouter)
 
 module.exports=app
