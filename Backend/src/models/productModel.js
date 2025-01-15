@@ -20,7 +20,7 @@ const SchemeObj={
     },
     originalPrice:{
         type:Number,
-        require:true
+        required:true
     },
     quantity:{
         type:Number,
@@ -34,7 +34,7 @@ const SchemeObj={
     },
     Imgs:{
         type:String,
-        require:true,
+        required:true,
         default:'https://images.pexels.com/photos/953864/pexels-photo-953864.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
     }
 
