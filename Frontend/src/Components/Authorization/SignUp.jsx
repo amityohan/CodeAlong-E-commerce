@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import ValidationFormObject from '../../validation';
 import { Link } from 'react-router-dom';
 function SignupForm() {
-
-
+  //////////////////////////////////////////////////////////////////////////////
+  // remove the image upload option it will overload the server for no reason.//
+  //////////////////////////////////////////////////////////////////////////////
   const [data, setdata] = useState({
     name: '',
     email: '',
