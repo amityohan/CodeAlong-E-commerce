@@ -1,5 +1,7 @@
-import LoginPage from "../Components/Authorization/LoginPage";
 
-export default function Login(){
-    return <LoginPage/>
+import LoginPage from '../components/Auth/Login.jsx';
+
+export default function Login() {
+    return <LoginPage />
+
 }

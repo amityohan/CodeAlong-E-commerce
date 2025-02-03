@@ -1,5 +1,5 @@
-import SignUpForm from '../Components/Authorization/SignUp'
+import SignupForm from '../components/Auth/Signup.jsx';
 
-export default function SignUp(){
-    return <SignUpForm/>
+export default function Signup(){
+    return <SignupForm/>
 }

@@ -1,22 +1,31 @@
-if (process.env.NODE_ENV !=='PRODUCTION'){
+if (process.env.NODE_ENV !== 'PRODUCTION') {
     require('dotenv').config({
-        path:'./src/config/.env'
+        path: './src/config/.env',
     });
 }
+
 const express=require('express');
-const UserRouter=require('./Routes/user.route.js')
-const productRouter=require('./Routes/product.route.js')
+const cors=require('cors')
+const cookieParser=require('cookie-parser')
+
 
 const app=express();
+const userRouter=require('./routes/user.route.js')
+const productRouter=require('./routes/product.route.js')
+const cartRouter=require('./routes/cart.route.js')
 
-app.use(express.json());
+app.use(express.json())
+app.use(cors())
+app.use(cookieParser())
 
 app.get('/',(req,res)=>{
-    return res.send('Welcome to backend')
-});
+    return res.send('heyy there!')
+})
 
-app.use('/user',UserRouter)
+// app.use('/user')
 
-app.use('/product', productRouter)
-
-module.exports=app
+app.use('/user',userRouter)
+app.use('/product',productRouter)
+app.use('/cart',cartRouter)
+//connecting db and running server 
+module.exports=app;

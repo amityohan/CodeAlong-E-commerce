@@ -12,7 +12,7 @@ const userSchema=new mongoose.Schema(
         {country:String},
         {address1:String},
         {address2:String},
-        {zipCode:String},
+        {zipCode:Number},
         {addressType:String},
         
     ],

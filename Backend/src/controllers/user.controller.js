@@ -3,6 +3,7 @@ const ErrorHandler=require('../utilities/errorhandler.js')
 const transporter=require('../utilities/sendMail.js')
 const jwt=require('jsonwebtoken')
 const bycrypt = require('bcrypt')
+const { rawListeners } = require('../models/productModel.js')
 
 
 require('dotenv').config({
@@ -158,6 +159,31 @@ const login =async(req, res)=>{
     }
 }
 
+const AddAddressController= async(res,req)=>{
+    const userId=req.UserId;
+    const {city,country,address1,address2, zipCode, addressType}=req.body;
+    try{
+        const userFindOne=await UserModel.findOne({
+            _id:userId,
+        })
+        if(!userFindOne){
+            return res
+                .status(404)
+                .send({message:'User not found', success:false});
+        }
+        const userAddress={
+            country,city,address1,address2,zipCode,addressType
+        };
 
+        userFindOne.address.push(userAddress);
+        const response=await userFindOne.save();
+        return res
+            .status(201)
+            .send({message:'User Address foundm', success:true,response })
+    }catch(er){
+        return res.status(400)
+            .send({message:er.message, success:false})
+    }
+}
 
-module.exports={CreateUser, verifyUserController,login,signup};
+module.exports={CreateUser, verifyUserController,login,signup, AddAddressController};

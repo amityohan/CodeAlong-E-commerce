@@ -1,25 +1,23 @@
-const express=require('express');
-const upload=require('../Middlewares/multer.js');
+const express = require('express');
+// const  model = require('mongoose');
+const {CreateUser , verifyUserController,signup,login,getUserData,AddAddressController,getAddressController} = require('../controller/user.controller.js')
+const upload = require('../middlewares/multer.js')
+const jwt=require('jsonwebtoken')
+const router = express.Router();
+const verifyUser=require('../middlewares/jwt-verify.js')
 
-const {
-    CreateUser,
-    verifyUserController,
-    login,
-    signup
-}=require('../controllers/user.controller.js');
-const UserModel = require('../models/user.model.js');
+const productrouter=require('./product.route.js')
 
-// const jwt =require('jsonwebtoken')
-const router=express.Router();
+router.post('/create-user', upload.single('file'), CreateUser)
+router.get('/activation/:token',verifyUserController)
 
-router.post('/create-user', upload.single('file'),CreateUser);
+router.post("/signup",upload.single('file'),signup)
+router.post("/login",login)
 
-router.get('/activation/:token',)
+router.get('/user-data',verifyUser,getUserData)
+router.post('/add-address',verifyUser,AddAddressController)
 
-router.post('/signup',signup)
+router.get('/get-addresses',verifyUser,getAddressController)
 
-router.post('/login',login)
-
-
-module.exports=router;
+module.exports = router;
 

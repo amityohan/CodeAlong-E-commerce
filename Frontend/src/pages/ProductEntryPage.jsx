@@ -1,179 +1,147 @@
-import React, { useState } from 'react';
-import { Upload } from 'lucide-react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from 'axios'
+
+
+
 function ProductEntryPage() {
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    rating: 0,
-    discountedPrice: 0,
-    originalPrice: 0,
-    quantity: 0,
-    category: '',
-  });
-  const [errorInput, setInputError] = useState('');
-  const [Images, setImages] = useState(null);
 
-  const handleImageUpload = (e) => {
-    const ImagesArray = Array.from(e.target.files);
-    console.log(ImagesArray);
-    setImages(ImagesArray);
-  };
-  const handleChange = (e) => {
-    setInputError('');
-    const { name, value } = e.target;
-    console.log(name, value);
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    console.log(formData);
-  };
-  // 1. take all enteries from the user and store it in use STATES
-  //   e.target.value;
-  //   setdata(...,[name]:value)
-  // 2. take those images and store in another use state
-  // 1. convert the all the image paths and set the state
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    console.log(Images);
-    const {
-      title,
-      description,
-      rating,
-      discountedPrice,
-      originalPrice,
-      quantity,
-      category,
-    } = formData;
-    if (
-      title.length <= 0 ||
-      description.length <= 0 ||
-      discountedPrice <= 0 ||
-      originalPrice <= 0 ||
-      quantity <= 0 ||
-      category.length <= 0
-    ) {
-      return setInputError('Enter The Information Inside Feilds Correctly...');
+    const [formdata, setformdata] = useState({
+        title: '',
+        description: '',
+        discountedPrice: 0,
+        originalPrice: 0,
+        quantity: 0,
+        category: '',
+        rating: 0
+
+
+    })
+
+    const [error, setError] = useState('')
+    const [imgs, setImgs] = useState(null)
+
+    const handlefileUpload = (e) => {
+        const ImageArray = Array.from(e.target.files)
+        console.log(ImageArray)
+        setImgs(ImageArray)
+
     }
-    let formDataBody = new FormData();
-    formDataBody.append('title', title);
-    formDataBody.append('description', description);
-    formDataBody.append('category', category);
-    formDataBody.append('discountedPrice', discountedPrice);
-    formDataBody.append('originalPrice', originalPrice);
-    formDataBody.append('quantity', quantity);
-    formDataBody.append('rating', rating);
 
-    Images.map((ele) => {
-      formDataBody.append('filepath', ele);
-    });
+    const handleSubmit = async(e) => {
+        e.preventDefault()
 
-    console.log(formDataBody);
-    // axios request post
-    axios.post('http://localhost:8080/product/create-product', formData, {
-      headers: {
-        'Content-Type': 'multi-part/form-data',
-      },
-    });
-  };
-  return (
-    <div
-      className="flex justify-center items-center border border-black"
-      style={{ height: '100vh' }}
-    >
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="">Enter Title</label>
-          <br />
-          <input
-            type="text"
-            onChange={handleChange}
-            value={formData.title}
-            name="title"
-            placeholder="Enter Product title"
-          />
+        console.log(formdata)
+        // console.log(ImageArray)
+
+        const { title, description, discountedPrice, originalPrice, quantity, category, rating } = formdata
+
+        if (title.length <= 0 || description.length <= 0 || discountedPrice <= 0 || originalPrice <= 0 || quantity <= 0 || category.length <= 0) {
+            return setError('Enter the information inside the fields...')
+        }
+
+        let formdataBody = new FormData();
+        formdataBody.append('title', title)
+        formdataBody.append('description', description)
+        formdataBody.append('discountedPrice', discountedPrice)
+        formdataBody.append('originalPrice', originalPrice)
+        formdataBody.append('quantity', quantity),
+        formdataBody.append('rating', rating)
+        formdataBody.append('category', category)
+        formdataBody.append('token',localStorage.getItem('token'))
+
+
+        imgs.map((element, index) => {
+            formdataBody.append(`files`, element)
+        })
+
+        console.log(formdataBody)
+        const token= localStorage.getItem('token')
+        axios.post(`http://localhost:8080/product/create-product?token=${token}`, formdataBody, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    const handleChange = (e) => {
+        setError('')
+        const { name, value } = e.target
+        console.log(name, value)
+
+        setformdata({
+            ...formdata,
+            [name]: value
+
+        })
+
+        // console.log(setformdata)
+
+    }
+
+    return (
+        <div className="flex justify-center items-center border border-black h-screen">
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="">Product title</label>
+                    <br />
+                    <input type="text" onChange={handleChange} value={formdata.title} name="title" placeholder="Enter product title" />
+                </div>
+                <div>
+                    <label htmlFor="">Product description</label>
+                    <br />
+                    <input type="text" name="description" onChange={handleChange} value={formdata.description} placeholder="Enter description" />
+                </div>
+
+                <div>
+                    <label htmlFor="">Discounted Price</label>
+                    <br />
+                    <input type="number" name="discountedPrice" onChange={handleChange} value={formdata.discountedPrice} placeholder="Discounted price" />
+                </div>
+
+                <div>
+                    <label htmlFor="">Original Price</label>
+                    <br />
+                    <input type="number" name="originalPrice" onChange={handleChange} value={formdata.originalPrice} placeholder="Original Price" />
+                </div>
+
+                <div>
+                    <label htmlFor="">Stock Quantity</label>
+                    <br />
+                    <input type="number" name="quantity" onChange={handleChange} value={formdata.quantity} placeholder="enter stock quantity" />
+                </div>
+
+                <div>
+                    <label htmlFor="">Upload product image</label>
+                    <br />
+                    <input type="file" multiple onChange={handlefileUpload} />
+                </div>
+
+                <div>
+                    <label htmlFor="">Enter category</label>
+                    <br />
+                    <input type="text" name="category" onChange={handleChange} value={formdata.category} placeholder="enter the category" />
+                </div>
+
+                <div>
+                    <label htmlFor="">rating of the product</label>
+                    <br />
+                    <input type="number" name="rating" onChange={handleChange} value={formdata.rating} placeholder="rating of the product" />
+                </div>
+
+                {error && <p>{error}</p>}
+                <button type="Submit" className="bg-blue-400 text-white px-5 py-1">Submit</button>
+            </form>
         </div>
-        <div>
-          <label htmlFor="">Enter Description</label>
-          <br />
-          <input
-            type="text"
-            name="description"
-            onChange={handleChange}
-            value={formData.description}
-            placeholder="Enter Description"
-          />
-        </div>
-        <div>
-          <label htmlFor="">Discounted Price</label>
-          <br />
-          <input
-            type="number"
-            name="discountedPrice"
-            onChange={handleChange}
-            value={formData.discountedPrice}
-            placeholder="discounted-price.."
-          />
-        </div>
-        <div>
-          <label htmlFor="">Original Price</label>
-          <br />
-          <input
-            type="number"
-            onChange={handleChange}
-            name="originalPrice"
-            value={formData.originalPrice}
-            placeholder="original price.."
-          />
-        </div>
-        <div>
-          <label htmlFor="">Stock Quantity</label>
-          <br />
-          <input
-            type="number"
-            onChange={handleChange}
-            value={formData.quantity}
-            name="quantity"
-            placeholder="Enter the Stock Quantity.."
-          />
-        </div>
-        <div>
-          <label htmlFor="">Upload Product Images</label>
-          <br />
-          <input type="file" multiple onChange={handleImageUpload} />
-        </div>
-        <div>
-          <label htmlFor="">Enter Category</label>
-          <br />
-          <input
-            type="text"
-            onChange={handleChange}
-            value={formData.category}
-            name="category"
-            placeholder="Enter the category..."
-          />
-        </div>
-        <div>
-          <label htmlFor="">Enter Rating of product</label>
-          <br />
-          <input
-            value={formData.rating}
-            name="rating"
-            type="number"
-            onChange={handleChange}
-            placeholder="Rating of the product"
-            className="border border-black "
-          />
-        </div>
-        {errorInput && <p>{errorInput}</p>}
-        <button type="Submit" className="bg-blue-400 text-white px-5 py-1">
-          Submit
-        </button>
-      </form>
-    </div>
-  );
+    )
+
 }
 
 export default ProductEntryPage;
+
+
