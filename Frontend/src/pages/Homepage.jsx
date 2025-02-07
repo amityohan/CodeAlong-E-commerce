@@ -10,7 +10,7 @@ function HomePage() {
             'http://localhost:8080/product/get-products'
         )
         setdata(response.data.data)
-        // console.log(response)
+        console.log(response.data.data)
     }
 
     useEffect(() => {
@@ -20,6 +20,7 @@ function HomePage() {
         }
         callhandler()
     }, [])
+    console.log(data)
 
     // console.log(data)
     const handleDelete = async (id) => {

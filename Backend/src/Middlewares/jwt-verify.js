@@ -1,5 +1,4 @@
 const jwt=require('jsonwebtoken')
-const { patch } = require('../app')
 const { query } = require('express')
 
 if(process.env.NODE!=='PRODUCTION'){

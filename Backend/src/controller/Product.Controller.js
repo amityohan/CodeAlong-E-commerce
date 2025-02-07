@@ -36,7 +36,7 @@ const createProductController = async (req, res) => {
             category,
             rating,
             Imgs: dataImgs,
-            userEmail:req.useEmailAddress
+            userEmail:req.userEmailAddress
         })
 
         return res.status(201).send({
@@ -53,7 +53,8 @@ const createProductController = async (req, res) => {
                 success: false
             })
         }
-        res.status(500).send({ message: error, success: false })
+        console.error('Error creating product:', error); // Log the error for debugging
+        res.status(500).send({ message: 'Internal server error', success: false })
     }
 }
 
@@ -172,6 +173,3 @@ const deleteSingleProductController = async (req, res) => {
 
 
 module.exports = { createProductController, getProductDataController, updateProductController, getSingleProductDocumentController, deleteSingleProductController }
-
-
-

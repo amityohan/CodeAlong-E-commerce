@@ -11,7 +11,7 @@ import ProfilePage from './pages/Profile.jsx';
 import UpdateForm from './pages/UpdateForm';
 import ProductEntryPage from './pages/ProductEntryPage';
 import AddressCard from './components/AddressComp/AddressCard.jsx';
-import Navbar from './components/navbar/Navbar.jsx';
+import Navbar from './Components/Navbar/Navbar.jsx';
 
 
 
