@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 const usermodel=require("../model/user_model.js")
 const OrderModel = require("../model/order.model.js") 
-const usermodel=require('../model/user_model.js')
+// const usermodel=require('../model/user_model.js')
 const cartModel = require('../model/cart.model.js')
 
 async function CreateOrder(req,res) {
