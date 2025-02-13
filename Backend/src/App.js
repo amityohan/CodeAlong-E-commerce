@@ -12,7 +12,7 @@ const cookieParser=require('cookie-parser')
 const app=express();
 const userRouter=require('./routes/user.route.js')
 const productRouter=require('./routes/product.route.js')
-const cartRouter=require('./routes/cart.route.js');
+const cartRouter=require('./Routes/cart.route.js');
 const router = require('./Routes/order.route.js')
 
 app.use(express.json())
