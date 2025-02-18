@@ -17,7 +17,7 @@ const orderModel=new mongoose.Schema({
         address1: { type: String, required: true },
         address2: { type: String },
         zipCode: { type: Number, required: true },
-        addressType: { type: String, required: true },
+        addressType:  {type: String, required: true },
     },
     totalAmount: {
         type: Number,
