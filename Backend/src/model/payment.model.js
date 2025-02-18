@@ -24,4 +24,4 @@ const file={
 
 const SchemaPayment=new mongoose.Schema(file,{versionKey:false})
 const PaymentModel=mongoose.model('Payment',SchemaPayment)
-module.exports=PaymentModel
+module.exports=PaymentModel;
