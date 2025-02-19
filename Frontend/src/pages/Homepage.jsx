@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
     const [data, setdata] = useState([])
+    const dataRedux = useSelector((state) => state.user);
     const fetchProduct = async () => {
         const response = await axios.get(
             'http://localhost:8080/product/get-products'

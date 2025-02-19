@@ -5,7 +5,7 @@ import AddressList from '../components/AllAddress/Addresses';
 function SelectAddressPage() {
 
     const [AllAddresses, SetAllAddresses] = useState([])
-
+    const data = useSelector((state) => state.user);
     useEffect(() => {
         const fetch = async () => {
             const token = localStorage.getItem('token');
