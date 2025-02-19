@@ -12,7 +12,7 @@ function OrderConfirmationPage() {
     );
     
     const navigate=useNavigate();
-
+    const data = useSelector((state) => state.user);
     useEffect(() => {
         const getCartData = async () => {
             const token = localStorage.getItem('token');

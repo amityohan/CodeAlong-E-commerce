@@ -4,6 +4,7 @@ import CartCard from '../Components/productCard/CartCard.jsx';
 
 function OrderHistory() {
 const [orderedData,setOrderedData]=useState([]);
+const data = useSelector((state) => state.user);
 const fetchedOrderedProducts=async()=>{
     const token=localStorage.getItem('token');
     

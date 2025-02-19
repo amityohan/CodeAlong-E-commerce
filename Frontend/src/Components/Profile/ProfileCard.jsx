@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import {useSelector} from 'react-redux';
+
 const Card = ({ children, className = '' }) => (
     <div className={`bg-white rounded-lg shadow-lg p-6 ${className}`}>
         {children}
@@ -30,6 +32,9 @@ function ProfileCard() {
             );
             setUserData(response.data.data);
         };
+        const data = useSelector((state) => state.user);
+        console.log(data);
+
         getUserData();
     }, []);
 
@@ -132,13 +137,18 @@ function ProfileCard() {
                                 <ul className="list-disc list-inside">
                                     {userData.address.map((addr, index) => (
                                         <>
-                                            
-                                            <li key={index}>City:{addr.city}</li>
-                                            <li key={index}>Country:{addr.country}</li>
-                                            <li key={index}>Address1:{addr.address1}</li>
-                                            <li key={index}>Address2:{addr.address2}</li>
-                                            <li key={index}>zipcode:{addr.zipCode}</li>
-                                            <br />
+                                            <div key ={index}>
+                                                <button onClick={()=>handleDelete(addr._id)}>
+                                                    Delete
+                                                </button>
+
+                                                <li key={addr._id}>City:{addr.city}</li>
+                                                <li key={addr._id}>Country:{addr.country}</li>
+                                                <li key={addr._id}>Address1:{addr.address1}</li>
+                                                <li key={addr._id}>Address2:{addr.address2}</li>
+                                                <li key={addr._id}>zipcode:{addr.zipCode}</li>
+                                                <br />
+                                            </div>
                                         </>
 
                                     ))}

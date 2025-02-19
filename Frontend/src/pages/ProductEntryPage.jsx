@@ -17,6 +17,8 @@ function ProductEntryPage() {
 
     })
 
+    const data = useSelector((state) => state.user);
+
     const [error, setError] = useState('')
     const [imgs, setImgs] = useState(null)
 
