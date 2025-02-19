@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
+import {useDispatch } from 'react-redux';
+import {setUserEmail} from '../../Redux/User/UserActions.js';
+import { setEmail } from '../../Redux/User/UsersSlice';
 
 function LoginPage() {
+    const dispatch=(useDispatch())
     const [details, setdetails] = useState({
         email: '',
         password: '',
@@ -20,6 +24,10 @@ function LoginPage() {
         e.preventDefault()
         // need to do axios request to backend
         const response = await axios.post(`http://localhost:8080/user/login`,details);
+        
+        console.log(details)
+        dispatch(setUserEmail(details,email));
+
         localStorage.setItem('token',response.data.token);
         console.log(response)
         navigate('/');
